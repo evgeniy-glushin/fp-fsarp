@@ -26,6 +26,7 @@ namespace TestsCSharp
             Assert.AreEqual(expected: 3, actual: countChangeList(4, (new List<int> { 1, 2 })));
             Assert.AreEqual(expected: 1, actual: countChangeList(6, (new List<int> { 6 })));
             Assert.AreEqual(expected: 1, actual: countChangeList(6, (new List<int> { 1 })));
+            Assert.AreEqual(expected: 14, actual: countChangeList(10, (new List<int> { 1, 2, 3, 5 })));
         }
     }
 }
