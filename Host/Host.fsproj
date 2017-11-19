@@ -5,15 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>9ee05897-edec-45f4-b3af-359bdb8b14f4</ProjectGuid>
+    <ProjectGuid>49bf533c-f23b-43f7-bf7d-7cae445c9348</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Code</RootNamespace>
-    <AssemblyName>Code</AssemblyName>
+    <RootNamespace>Host</RootNamespace>
+    <AssemblyName>Host</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.1.0</TargetFSharpCoreVersion>
-    <Name>Code</Name>
-    <TargetFrameworkProfile />
+    <Name>Host</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,13 +55,9 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Balancing.fs" />
-    <Compile Include="CountChange.fs" />
+    <Compile Include="Program.fs" />
     <None Include="App.config" />
     <Content Include="packages.config" />
-    <Compile Include="TextPerser.fs" />
-    <Compile Include="OrElseWorkflow.fs" />
-    <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -77,6 +72,13 @@
     <Reference Include="System.ValueTuple">
       <HintPath>..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Code\Code.fsproj">
+      <Name>Code</Name>
+      <Project>{9ee05897-edec-45f4-b3af-359bdb8b14f4}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

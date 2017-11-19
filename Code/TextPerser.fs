@@ -62,6 +62,22 @@ let ( <!> ) = mapP
 
 let ( |>> ) parser f = mapP f parser 
 
+let sequence listOfParsers =
+    let concat p1 p2 =
+        p1 .>>. p2
+        |>> (fun(l1, l2) -> l1 @ l2)
+
+    listOfParsers
+    |> Seq.map (fun p -> p |>> List.singleton)
+    |> Seq.reduce concat
+
+let pstring str =
+    str
+    |> Seq.map pchar
+    |> sequence
+    |>> Seq.toArray
+    |>> String
+
 let returnP x = Parser (fun input ->
     Ok(x, input)    
 )
@@ -72,14 +88,14 @@ let applyP fP xP =
 
 let ( <*> ) = applyP
 
-//let parseDigit = anyOf ['0'..'9']
+let parseDigit = anyOf ['0'..'9']
 
-//let parseThreeDigits =
-//    parseDigit .>>. parseDigit .>>. parseDigit 
-//    |>> fun ((a, b), c) -> String [|a;b;c|]
-//    |>> int
+let parseThreeDigits =
+    parseDigit .>>. parseDigit .>>. parseDigit 
+    |>> fun ((a, b), c) -> String [|a;b;c|]
+    |>> int
 
-//run parseThreeDigits "1234A"
+run parseThreeDigits "1234A"
 
 //let parseLowercase = 
 //    anyOf ['a'..'z']
